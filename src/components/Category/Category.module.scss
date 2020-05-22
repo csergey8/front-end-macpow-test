@@ -1,0 +1,25 @@
+.categoryBlock {
+  width: 85px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #F8F8F8;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ABABAB;
+  margin-bottom: 5px;
+  margin-left: 10px;
+
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.categoryBlockSelected {
+  color: #333333;
+}

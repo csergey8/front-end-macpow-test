@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from './Header.module.scss'
 
 const Header = () => {
     return (
         <header>
-            <h3>MSI 2020</h3>
+            <div className={styles.text}>MSI 2020</div>
         </header>
     )
 }
