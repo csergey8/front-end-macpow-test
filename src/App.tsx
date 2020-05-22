@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { GetJoke, Header, Joke, Favorites } from './components'
+import { AppContext } from './store/context';
 
-function App() {
+const App = () => {
+  const { state, getRandomJoke } = React.useContext(AppContext)
+
+  React.useEffect(() => {
+    console.log(state)
+    getRandomJoke()
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <main>
+        <Header />
+        <GetJoke />
+        <Joke />
+      </main>
+      <aside>
+        <Favorites />
+      </aside>
     </div>
   );
 }
 
-export default App;
+export default App

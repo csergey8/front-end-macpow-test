@@ -1,0 +1,1 @@
+export { chuckNorrisApi } from './api'
