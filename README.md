@@ -1,6 +1,6 @@
 ## Available Scripts
 
-In the project directory, you can run:
+To run application localy, in the project directory, you can run:
 
-### `yarn start`
+### `yarn add && yarn start`
 
