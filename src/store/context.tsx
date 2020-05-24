@@ -58,7 +58,9 @@ const AppProvider: React.FC = ({ children }) => {
   };
 
   const getJokesFromStorage = async () => {
-    const jokes = await JSON.parse(localStorage.getItem("JOKES_FAVOURITE") || "{}");
+    const jokes = await JSON.parse(
+      localStorage.getItem("JOKES_FAVOURITE") || "{}"
+    );
     dispatch({ type: jokesActions.SET_JOKES_FROM_STORAGE, payload: jokes });
   };
 

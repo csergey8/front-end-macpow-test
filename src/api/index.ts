@@ -1,1 +1,1 @@
-export { chuckNorrisApi } from './api'
+export { chuckNorrisApi } from "./api";

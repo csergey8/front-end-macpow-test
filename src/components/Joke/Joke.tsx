@@ -8,21 +8,32 @@ import styles from "./Joke.module.scss";
 
 type PropsType = {
   item: JokeType | null;
-  favouriteJoke?: boolean 
-  likedJoke?: boolean
+  favouriteJoke?: boolean;
+  likedJoke?: boolean;
 };
 
-const Joke: React.FC<PropsType> = ({ item, favouriteJoke = false, likedJoke = false}) => {
-  const { state, addToFavourite, removeFromFavorite } = React.useContext(AppContext);
+const Joke: React.FC<PropsType> = ({
+  item,
+  favouriteJoke = false,
+  likedJoke = false,
+}) => {
+  const { state, addToFavourite, removeFromFavorite } = React.useContext(
+    AppContext
+  );
   const now = new Date().getTime();
   let updatedHoursAgo;
   let favourite = false;
   if (item) {
     const updateAt = new Date(item.updated_at).getTime();
     updatedHoursAgo = Math.floor((now - updateAt) / (60 * 60 * 1000));
-    favourite = (state.favouriteJokes as (JokeType [])).map((joke) => joke.id).indexOf(item.id) !== -1
+    favourite =
+      (state.favouriteJokes as JokeType[])
+        .map((joke) => joke.id)
+        .indexOf(item.id) !== -1;
   }
-  const containerClass = `${favouriteJoke ? `${styles.container} ${styles.favourite}`: styles.container}`
+  const containerClass = `${
+    favouriteJoke ? `${styles.container} ${styles.favourite}` : styles.container
+  }`;
   return (
     item && (
       <div className={containerClass}>
@@ -42,11 +53,17 @@ const Joke: React.FC<PropsType> = ({ item, favouriteJoke = false, likedJoke = fa
             <div className={styles.updated}>
               Last update: {updatedHoursAgo} hours ago
             </div>
-          {item.categories.length > 0 ? <div className={styles.category}>{item.categories[0]}</div> : null}
+            {item.categories.length > 0 ? (
+              <div className={styles.category}>{item.categories[0]}</div>
+            ) : null}
           </div>
         </div>
         <div className={styles.favouriteIcon}>
-          { (favourite && favouriteJoke) === true || likedJoke  ? <FavoriteIcon onClick={() => removeFromFavorite(item.id)} />: <FavoriteBorderIcon onClick={() => addToFavourite(item)}/>}
+          {(favourite && favouriteJoke) === true || likedJoke ? (
+            <FavoriteIcon onClick={() => removeFromFavorite(item.id)} />
+          ) : (
+            <FavoriteBorderIcon onClick={() => addToFavourite(item)} />
+          )}
         </div>
       </div>
     )
