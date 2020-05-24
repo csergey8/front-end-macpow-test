@@ -20,7 +20,7 @@ const App = () => {
     });
     return favouriteInSearchJokes
       ? (favouriteInSearchJokes as JokeType[]).map((joke) => (
-          <Joke likedJoke item={joke} />
+          <Joke key={joke.id} likedJoke item={joke} />
         ))
       : null;
   };
@@ -37,10 +37,14 @@ const App = () => {
         <section className={styles.sectionContainer}>
           <Header />
           <GetJoke />
+          <div>
           {state.currentJokes?.map((joke) => (
-            <Joke item={joke} />
+            <Joke key={joke.id} item={joke} />
           ))}
-          {favouriteInSearchRender()}
+          </div>
+          <div>
+            {favouriteInSearchRender()}
+          </div>
         </section>
       </main>
       <aside className={asideClass}>

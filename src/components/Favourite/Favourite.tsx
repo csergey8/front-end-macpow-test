@@ -13,7 +13,7 @@ const Favourite: React.FC<PropsType> = ({ items }) => {
       <div className={styles.heading}>Favourite</div>
       {items.length > 0 &&
         (items as JokeType[]).map((item: JokeType) => (
-          <Joke favouriteJoke={true} item={item} />
+          <Joke key={item.id} favouriteJoke={true} item={item} />
         ))}
     </div>
   );

@@ -77,7 +77,6 @@ const AppProvider: React.FC = ({ children }) => {
     if (!res.data.result) {
       dispatch({ type: jokesActions.SET_JOKE, payload: res.data });
     } else {
-      console.log(res.data.result.length);
       dispatch({ type: jokesActions.SET_JOKES, payload: res.data.result });
     }
   };

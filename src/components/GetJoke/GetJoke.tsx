@@ -11,12 +11,12 @@ const GetJoke = () => {
 
   React.useEffect(() => {
     getCategories();
-  }, []);
+  }, [getCategories]);
 
-  const onSubmitHandler = (e: any) => {
+  const onSubmitHandler = React.useCallback((e: any) => {
     e.preventDefault();
     getJoke(radioChecked, selectedCategory, searchText);
-  };
+  }, [getJoke, radioChecked, searchText, selectedCategory]);
 
   const checked = {
     random: "random" === radioChecked,
@@ -32,7 +32,7 @@ const GetJoke = () => {
     setSearchText(e.target.value);
   };
 
-  return (
+  return React.useMemo(() => (
     <section className={styles.container}>
       <div className={styles.primaryText}>Hey</div>
       <div className={styles.secondaryText}>
@@ -65,6 +65,7 @@ const GetJoke = () => {
             <div className={styles.categoriesContainer}>
               {state.categories?.map((category: string) => (
                 <Category
+                  key={category}
                   selected={selectedCategory === category}
                   name={category}
                   selectHandler={setSelectedCategory}
@@ -100,7 +101,7 @@ const GetJoke = () => {
         </button>
       </form>
     </section>
-  );
+  ), [state.categories, checked, onSubmitHandler, searchText, selectedCategory]);
 };
 
 export { GetJoke };
