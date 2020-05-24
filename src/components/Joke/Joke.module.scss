@@ -1,9 +1,51 @@
 .container {
   max-width: 680px;
-  height: 225px;
-  background: #F8F444;
+  min-height: 225px;
+  margin-bottom: 20px;
+  background: #F8F8F8;
   border-radius: 20px;
   display: flex;
+  position: relative;
+
+  @media (max-width: 834px) {
+    max-width: 754px;
+  }
+
+  &.favourite {
+    max-width: 400px;
+    min-height: 140px;
+    border-radius: 10px;
+    background: #FFFFFF;
+
+    @media (max-width: 380px){
+      max-width: 340px;
+    }
+
+    & .jokeText {
+      max-width: 300px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    & .id {
+      margin-top: 47px;
+    }
+
+    & .jokeInfo {
+      margin-bottom: 20px;
+    }
+
+    & .favouriteIcon {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+    & .chatIconBlock {
+      background: #F8F8F8;
+      margin-top: 47px;
+    }
+  }
 
   & .chatIconBlock {
     margin-left: 40px;
@@ -12,9 +54,15 @@
     margin-top: 67px;
     width: 40px;
     height: 40px;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #FFFFFF;
+
+    @media (max-width: 380px) {
+      margin-left: 30px;
+    }
   }
 
   & .chatIcon {
@@ -36,10 +84,59 @@
     margin-left: 3px;
   }
 
-  & .text {
+  & .jokeContainer {
+    position: relative;
+    width: 540px;
+
+
+    @media (max-width: 834px) {
+      width: 615px;
+    }
+  }
+
+  & .jokeText {
     margin-top: 5px;
+    margin-bottom: 28px;
     max-width: 540px;
     font-size: 18px;
     line-height: 26px;
+  }
+
+  .jokeInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    margin-bottom: 45px;
+  }
+
+  .updated {
+    color: #ABABAB;
+    font-size: 10px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 14px;
+  }
+
+  .category {
+    width: 107px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: #FFFFFF;
+    border-radius: 6px;
+    text-align: center;
+    padding: 5px 0 5px 0;
+  }
+
+  .favouriteIcon {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    color: #FF6767;
+    cursor: pointer;
   }
 }

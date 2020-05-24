@@ -4,9 +4,10 @@ import styles from './GetJoke.module.scss'
 import { Category } from '../'
 
 const GetJoke = () => {
-    const { state, getCategories, getRandomJoke } = React.useContext(AppContext)
+    const { state, getCategories, getJoke } = React.useContext(AppContext)
     const [radioChecked, setRadioChecked] = React.useState('random')
     const [selectedCategory, setSelectedCategory] = React.useState('')
+    const [searchText, setSearchText] = React.useState('');
 
     React.useEffect(() => {
         getCategories()
@@ -14,7 +15,7 @@ const GetJoke = () => {
 
     const onSubmitHandler = (e: any) => {
         e.preventDefault()
-        getRandomJoke()
+        getJoke(radioChecked, selectedCategory, searchText)
     }
 
     const checked = {
@@ -27,10 +28,14 @@ const GetJoke = () => {
       setRadioChecked(e.target.value)
     }
 
+    const inputSearchHandler = (e: any) => {
+      setSearchText(e.target.value)
+    } 
+
     return (
         <section className={styles.container}>
             <div className={styles.primaryText}>Hey</div>
-            <div className={styles.secondaryText}>Let's try to find: </div>
+            <div className={styles.secondaryText}>Let's try to find a joke for you: </div>
             <form onSubmit={onSubmitHandler} className={styles.form}>
                 <div className={styles.radioContainer}>
                   <input onChange={radioHandler} checked={checked.random} className={styles.radioBtn} type="radio" id="random" name="radio" value="random" />
@@ -48,7 +53,7 @@ const GetJoke = () => {
                   <input onChange={radioHandler} checked={checked.search} type="radio" id="search" name="radio" value="search" />
                   <label htmlFor="search">Search</label>
                   {checked.search && <div>
-                    <input className={styles.searchInput} type="text" placeholder="Free text search..." />
+                    <input onChange={inputSearchHandler} className={styles.searchInput} type="text" placeholder="Free text search..." value={searchText}/>
                   </div>
                   }
                 </div>
