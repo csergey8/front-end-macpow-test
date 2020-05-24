@@ -16,13 +16,13 @@ export type JokeType = {
 export interface JokeState {
   categories: Array<string> | null;
   currentJokes: Array<JokeType> | null;
-  favouriteJokes: Array<JokeType> | [];
+  favouriteJokes: Array<JokeType> | null;
 }
 
 const initialState: JokeState = {
   categories: null,
   currentJokes: null,
-  favouriteJokes: [],
+  favouriteJokes: null,
 };
 
 const AppContext = React.createContext<{

@@ -12,14 +12,18 @@ const App = () => {
   const asideClass = sideSlideFavOpen ? styles.show : "";
 
   const favouriteInSearchRender = () => {
-    const favouriteInSearchJokes = state.currentJokes?.filter((joke) => {
-      const favIds = (state.favouriteJokes as JokeType[]).map(
+    let favIds: any[] = [];
+    if(state.favouriteJokes){
+      favIds = state.favouriteJokes?.map(
         (joke: JokeType) => joke.id
       );
-      return favIds.includes(joke.id);
+    }
+    const favouriteInSearchJokes = state.currentJokes?.filter((joke) => {
+        return favIds.includes(joke.id);
     });
+
     return favouriteInSearchJokes
-      ? (favouriteInSearchJokes as JokeType[]).map((joke) => (
+      ? favouriteInSearchJokes?.map((joke) => (
           <Joke key={joke.id} likedJoke item={joke} />
         ))
       : null;

@@ -29,14 +29,11 @@ const handlers: any = {
     currentJokes: null,
   }),
   [jokesActions.ADD_JOKE_TO_FAVOURITE]: (state: JokeState, action: any) => {
-    if (
-      (state.favouriteJokes as JokeType[])
-        .map((joke) => joke.id)
-        .includes(action.payload.id)
-    ) {
-      return state;
+    if(state.favouriteJokes){
+      const alreadyAdded = state.favouriteJokes?.map((joke: JokeType) => joke.id).includes(action.payload.id)
+      if(alreadyAdded) return state
     }
-    const favouriteJokes = [...state.favouriteJokes, action.payload];
+    const favouriteJokes = state.favouriteJokes ? [...state.favouriteJokes, action.payload] : null;
     localStorage.setItem("JOKES_FAVOURITE", JSON.stringify(favouriteJokes));
     return {
       ...state,
@@ -47,7 +44,7 @@ const handlers: any = {
     state: JokeState,
     action: any
   ) => {
-    const favouriteJokes = state.favouriteJokes.filter(
+    const favouriteJokes = state.favouriteJokes?.filter(
       (joke) => joke.id !== action.id
     );
     localStorage.setItem("JOKES_FAVOURITE", JSON.stringify(favouriteJokes));

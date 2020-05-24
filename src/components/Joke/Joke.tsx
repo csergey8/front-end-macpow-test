@@ -23,13 +23,10 @@ const Joke: React.FC<PropsType> = ({
   const now = new Date().getTime();
   let updatedHoursAgo;
   let favourite = false;
-  if (item) {
+  if (item && state.favouriteJokes) {
     const updateAt = new Date(item.updated_at).getTime();
     updatedHoursAgo = Math.floor((now - updateAt) / (60 * 60 * 1000));
-    favourite =
-      (state.favouriteJokes as JokeType[])
-        .map((joke) => joke.id)
-        .indexOf(item.id) !== -1;
+    favourite = (state.favouriteJokes as []).map((joke: JokeType) => joke.id).indexOf(item.id) !== -1;
   }
   const containerClass = `${
     favouriteJoke ? `${styles.container} ${styles.favourite}` : styles.container
@@ -53,7 +50,7 @@ const Joke: React.FC<PropsType> = ({
             <div className={styles.updated}>
               Last update: {updatedHoursAgo} hours ago
             </div>
-            {item.categories.length > 0 ? (
+            {item.categories ? (
               <div className={styles.category}>{item.categories[0]}</div>
             ) : null}
           </div>
