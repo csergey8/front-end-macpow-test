@@ -20,17 +20,23 @@ const Joke: React.FC<PropsType> = ({
   const { state, addToFavourite, removeFromFavorite } = React.useContext(
     AppContext
   );
+
   const now = new Date().getTime();
   let updatedHoursAgo;
   let favourite = false;
   if (item && state.favouriteJokes) {
     const updateAt = new Date(item.updated_at).getTime();
     updatedHoursAgo = Math.floor((now - updateAt) / (60 * 60 * 1000));
-    favourite = (state.favouriteJokes as []).map((joke: JokeType) => joke.id).indexOf(item.id) !== -1;
+    favourite =
+      (state.favouriteJokes as [])
+        .map((joke: JokeType) => joke.id)
+        .indexOf(item.id) !== -1;
   }
+
   const containerClass = `${
     favouriteJoke ? `${styles.container} ${styles.favourite}` : styles.container
   }`;
+
   return (
     item && (
       <div className={containerClass}>
